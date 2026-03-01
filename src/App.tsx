@@ -73,7 +73,7 @@ function CountdownTimer() {
 const achievements = [
   {
     id: 1,
-    title: "MSSD Merentas Desa 2024",
+    title: "MSSB Merentas Desa 2026",
     event: "Individual (L12)",
     athlete: "Theodor",
     result: "Rank #33",
@@ -82,7 +82,7 @@ const achievements = [
   },
   {
     id: 2,
-    title: "MSSD Merentas Desa 2024",
+    title: "MSSB Merentas Desa 2026",
     event: "Individual (P12)",
     athlete: "Avril",
     result: "Rank #40",
@@ -91,7 +91,7 @@ const achievements = [
   },
   {
     id: 3,
-    title: "MSSD Merentas Desa 2024",
+    title: "MSSB Merentas Desa 2026",
     event: "Individual (P12)",
     athlete: "illyvia",
     result: "Rank #57",
@@ -100,7 +100,7 @@ const achievements = [
   },
   {
     id: 4,
-    title: "MSSD Merentas Desa 2024",
+    title: "MSSB Merentas Desa 2026",
     event: "Individual (L12)",
     athlete: "Robbin",
     result: "Rank #62",
@@ -109,7 +109,7 @@ const achievements = [
   },
   {
     id: 5,
-    title: "MSSD Merentas Desa 2024",
+    title: "MSSB Merentas Desa 2026",
     event: "Individual (L12)",
     athlete: "Jarvis",
     result: "Rank #68",
@@ -130,33 +130,65 @@ const merentasDesaResults = {
     keseluruhan: "No. 10"
   },
   boys: [
-    { name: "Theodor", rank: 33, image: "https://picsum.photos/seed/theodor-athlete/400/400" },
-    { name: "Jarvis", rank: 68, image: "https://picsum.photos/seed/jarvis-athlete/400/400" },
-    { name: "Robbin", rank: 62, image: "https://picsum.photos/seed/robbin-athlete/400/400" },
-    { name: "Jibrail", rank: 135, image: "https://picsum.photos/seed/jibrail-athlete/400/400" },
-    { name: "Azzad", rank: 246, image: "https://picsum.photos/seed/boy5/400/400" },
+    { name: "Theodor", rank: 33, image: "https://lh3.googleusercontent.com/d/1ECHDULPW4200Tv8dVWWFS364pvFfKFbF" },
+    { name: "Robbin", rank: 62, image: "https://lh3.googleusercontent.com/d/1D2jJkRDyaFmO_NQn8LDp7GCCgJkRyGA0" },
+    { name: "Jarvis", rank: 68, image: "https://lh3.googleusercontent.com/d/1wZrWf5jTfXToPWPNsjUvEuAQJ08k6GgK" },
+    { name: "Khedribvand", rank: 135, image: "https://lh3.googleusercontent.com/d/1UpYmJ_rBe-vzkKXZ3vJ_34egeukpGLQe" },
+    { name: "Azzad", rank: 246, image: "https://lh3.googleusercontent.com/d/1HKL57IfTyeIm3zgiOWbjP0FhPq9NlNQj" },
   ],
   girls: [
-    { name: "Avril", rank: 40, image: "https://picsum.photos/seed/avril-white-bg/400/400" },
-    { name: "illyvia", rank: 57, image: "https://picsum.photos/seed/illyvia-athlete/400/400" },
-    { name: "Maxclyn", rank: 84, image: "https://picsum.photos/seed/maxclyn-athlete/400/400" },
-    { name: "Ashley", rank: 228, image: "https://picsum.photos/seed/ashley-athlete/400/400" },
-    { name: "Clarisse", rank: 283, image: "https://picsum.photos/seed/girl5/400/400" },
+    { name: "Avril", rank: 40, image: "https://lh3.googleusercontent.com/d/1A60ZT1vrVjoky9-AhsHEdhsS803iLP3h" },
+    { name: "illyvia", rank: 57, image: "https://lh3.googleusercontent.com/d/1rDk2pvcPo7YztSnVJGypvVSfFQTT_S4X" },
+    { name: "Maxclyn", rank: 84, image: "https://lh3.googleusercontent.com/d/1eNILaUwzNmXPV9EKU_iWDsUaS2J7NwRY" },
+    { name: "Ashley", rank: 228, image: "https://lh3.googleusercontent.com/d/1Qhbbx9k-MrApcjNZVxicBnWIq6e7DHpc" },
+    { name: "Clarisse", rank: 283, image: "https://lh3.googleusercontent.com/d/1cNoTNZ21UAScnnc5GTVEf-vGehO2J27F" },
   ]
 };
 
 const galleryImages = [
-  { url: "https://picsum.photos/seed/cross1/800/600", category: "Merentas Desa", title: "Trail Running" },
-  { url: "https://picsum.photos/seed/cross2/800/600", category: "Merentas Desa", title: "Team Spirit" },
-  { url: "https://picsum.photos/seed/cross3/800/600", category: "Merentas Desa", title: "Finish Line Joy" },
-  { url: "https://picsum.photos/seed/cross4/800/600", category: "Merentas Desa", title: "Morning Warmup" },
-  { url: "https://picsum.photos/seed/cross5/800/600", category: "Merentas Desa", title: "Forest Trail" },
-  { url: "https://picsum.photos/seed/cross6/800/600", category: "Merentas Desa", title: "Endurance Test" },
-  { url: "https://picsum.photos/seed/cross7/800/600", category: "Merentas Desa", title: "Uphill Challenge" },
-  { url: "https://picsum.photos/seed/cross8/800/600", category: "Merentas Desa", title: "Victory Lap" },
+  { url: "https://lh3.googleusercontent.com/d/1LZv4HyaNe_MpPpAxzBX-xl5asevMi5nN", category: "Merentas Desa", title: "Cross Country Moment" },
+  { url: "https://lh3.googleusercontent.com/d/11kdRWhL4PdIXAjEjK8QpqrPr2SDqfBlr", category: "Merentas Desa", title: "Determination" },
+  { url: "https://lh3.googleusercontent.com/d/1VxtDvarrRv2FhSpBT2fqfjJnRSMxadO8", category: "Merentas Desa", title: "Team Effort" },
+  { url: "https://lh3.googleusercontent.com/d/1xvsOLZBBud0XFUBMgG-kdbQOT8_gUu8f", category: "Merentas Desa", title: "Finish Line" },
+  { url: "https://lh3.googleusercontent.com/d/1bLLA93tyeKwAXYGa2WOqdxCxh_o-fS15", category: "Merentas Desa", title: "Event Highlight" },
+  { url: "https://lh3.googleusercontent.com/d/1ABDMDLmaytk4zupqGkzf4lg7-DG8UXkC", category: "Merentas Desa", title: "Race Day" },
+  { url: "https://lh3.googleusercontent.com/d/1QTyX-50vbZCA_5fsRQQh3JvCt55MR4Av", category: "Merentas Desa", title: "Athlete Spirit" },
+  { url: "https://lh3.googleusercontent.com/d/1dyxz4s3xcC-OdRmGLEbYbbUnaNaEps1H", category: "Merentas Desa", title: "Merentas Desa Action" },
+  { url: "https://lh3.googleusercontent.com/d/1llIMfkzAKrKYM8hXji6hBAU8PFWV7tPB", category: "Merentas Desa", title: "School Pride" },
+  { url: "https://lh3.googleusercontent.com/d/1A60ZT1vrVjoky9-AhsHEdhsS803iLP3h", category: "Merentas Desa", title: "Avril" },
+  { url: "https://lh3.googleusercontent.com/d/1UpYmJ_rBe-vzkKXZ3vJ_34egeukpGLQe", category: "Merentas Desa", title: "Khedribvand" },
+  { url: "https://lh3.googleusercontent.com/d/1D2jJkRDyaFmO_NQn8LDp7GCCgJkRyGA0", category: "Merentas Desa", title: "Robbin" },
+  { url: "https://lh3.googleusercontent.com/d/1wZrWf5jTfXToPWPNsjUvEuAQJ08k6GgK", category: "Merentas Desa", title: "Jarvis" },
+  { url: "https://lh3.googleusercontent.com/d/1HKL57IfTyeIm3zgiOWbjP0FhPq9NlNQj", category: "Merentas Desa", title: "Azzad" },
+  { url: "https://lh3.googleusercontent.com/d/1rDk2pvcPo7YztSnVJGypvVSfFQTT_S4X", category: "Merentas Desa", title: "Illyvia" },
+  { url: "https://lh3.googleusercontent.com/d/1eNILaUwzNmXPV9EKU_iWDsUaS2J7NwRY", category: "Merentas Desa", title: "Maxclyn" },
+  { url: "https://lh3.googleusercontent.com/d/1Qhbbx9k-MrApcjNZVxicBnWIq6e7DHpc", category: "Merentas Desa", title: "Ashley" },
 ];
 
 export default function App() {
+  const [viewerStats, setViewerStats] = useState({ live: 1, total: 0 });
+
+  useEffect(() => {
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const wsUrl = `${protocol}//${window.location.host}`;
+    const socket = new WebSocket(wsUrl);
+
+    socket.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.type === "VIEWER_STATS") {
+          setViewerStats({ live: data.live, total: data.total });
+        }
+      } catch (err) {
+        console.error("Failed to parse WebSocket message", err);
+      }
+    };
+
+    return () => {
+      socket.close();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-primary">
       {/* Navigation */}
@@ -166,14 +198,23 @@ export default function App() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center overflow-hidden">
                 <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/SJKC_Logo.svg/1200px-SJKC_Logo.svg.png" 
+                  src="https://lh3.googleusercontent.com/d/16FRnWS7xfkPJP-KaPe-shf9B1jtkEci1" 
                   alt="SJK Sungai Jaong Logo" 
-                  className="w-8 h-8 object-contain invert"
+                  className="w-8 h-8 object-contain"
+                  referrerPolicy="no-referrer"
                 />
               </div>
               <span className="font-display font-bold text-lg tracking-tight hidden sm:block">
                 SJK SUNGAI JAONG SPORTS
               </span>
+              <div className="flex items-center gap-2 px-2 py-1 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100 ml-4">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-wider">{viewerStats.live} Live</span>
+              </div>
+              <div className="hidden md:flex items-center gap-2 px-2 py-1 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100 ml-2">
+                <Users className="w-3 h-3" />
+                <span className="text-[10px] font-bold uppercase tracking-wider">{viewerStats.total} Total</span>
+              </div>
             </div>
               <div className="flex gap-6 text-sm font-medium text-zinc-600">
                 <a href="#track-field" className="hover:text-primary transition-colors">Track & Field</a>
@@ -187,13 +228,13 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-32 bg-primary text-white">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(250,204,21,0.2),transparent_50%)]" />
-          <div className="grid grid-cols-12 h-full w-full">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <div key={i} className="border-r border-white/10 h-full" />
-            ))}
-          </div>
+        <div className="absolute inset-0 opacity-20">
+          <img 
+            src="https://lh3.googleusercontent.com/d/16FRnWS7xfkPJP-KaPe-shf9B1jtkEci1" 
+            className="w-full h-full object-cover" 
+            referrerPolicy="no-referrer" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/40 to-primary" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -262,13 +303,21 @@ export default function App() {
             <div className="h-px flex-1 bg-zinc-200" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
+              {
+                name: "Theodor",
+                rank: "#33",
+                category: "L12 Individual",
+                image: "https://lh3.googleusercontent.com/d/1ECHDULPW4200Tv8dVWWFS364pvFfKFbF",
+                achievement: "Top Performer for Boys L12",
+                color: "bg-emerald-500"
+              },
               {
                 name: "Avril",
                 rank: "#40",
                 category: "P12 Individual",
-                image: "https://picsum.photos/seed/avril-white-bg/600/600",
+                image: "https://lh3.googleusercontent.com/d/1A60ZT1vrVjoky9-AhsHEdhsS803iLP3h",
                 achievement: "Top Performer for Girls P12",
                 color: "bg-pink-500"
               },
@@ -276,7 +325,7 @@ export default function App() {
                 name: "Jarvis",
                 rank: "#68",
                 category: "L12 Individual",
-                image: "https://picsum.photos/seed/jarvis-athlete/600/600",
+                image: "https://lh3.googleusercontent.com/d/1wZrWf5jTfXToPWPNsjUvEuAQJ08k6GgK",
                 achievement: "Consistent Pace & Grit",
                 color: "bg-blue-500"
               }
@@ -290,7 +339,7 @@ export default function App() {
                 className="group relative overflow-hidden rounded-3xl bg-primary aspect-[16/9] flex items-center"
               >
                 <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity">
-                  <img src={star.image} alt={star.name} className="w-full h-full object-cover" />
+                  <img src={star.image} alt={star.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent" />
                 </div>
                 
@@ -365,7 +414,7 @@ export default function App() {
             <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl p-6 flex flex-col justify-end shadow-xl">
               <Award className="w-8 h-8 text-primary mb-4" />
               <div className="text-2xl font-display font-bold text-primary leading-none">15 GOLD</div>
-              <div className="text-xs text-primary/60 font-bold uppercase tracking-wider mt-1">MSSR ZON BARAM HILIR</div>
+              <div className="text-xs text-primary/60 font-bold uppercase tracking-wider mt-1">MSSR ZON BARAM HILIR 2025</div>
             </div>
           </div>
         </section>
@@ -440,7 +489,7 @@ export default function App() {
                   <div key={boy.name} className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 border border-zinc-100 hover:border-blue-200 transition-colors group">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-xl overflow-hidden bg-zinc-200">
-                        <img src={boy.image} alt={boy.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                        <img src={boy.image} alt={boy.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform" referrerPolicy="no-referrer" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
@@ -472,7 +521,7 @@ export default function App() {
                   <div key={girl.name} className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 border border-zinc-100 hover:border-pink-200 transition-colors group">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-xl overflow-hidden bg-zinc-200">
-                        <img src={girl.image} alt={girl.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                        <img src={girl.image} alt={girl.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform" referrerPolicy="no-referrer" />
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
@@ -497,7 +546,16 @@ export default function App() {
         <section id="gallery" className="space-y-12">
           <div className="text-center max-w-2xl mx-auto">
             <h2 className="font-display text-4xl font-bold text-primary mb-4">Merentas Desa Gallery</h2>
-            <p className="text-zinc-500">Capturing the moments of triumph and determination from our cross-country events.</p>
+            <p className="text-zinc-500 mb-8">Capturing the moments of triumph and determination from our cross-country events.</p>
+            <a 
+              href="https://drive.google.com/drive/folders/1GttKBmc2LO2SlVE1-tllDUUFiuagt3Wx?usp=sharing" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-colors shadow-lg shadow-black/10"
+            >
+              <Map className="w-4 h-4" />
+              View Full Google Drive Gallery
+            </a>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -529,7 +587,7 @@ export default function App() {
         <section id="hall-of-fame" className="pt-12">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="font-display text-4xl font-bold text-primary mb-4">Merentas Desa Highlights</h2>
-            <p className="text-zinc-500">Top individual performances from the MSSD Merentas Desa 2024 competition.</p>
+            <p className="text-zinc-500">Top individual performances from the MSSB Merentas Desa 2026 competition.</p>
           </div>
           
           <div className="bg-white rounded-3xl shadow-xl shadow-black/5 border border-zinc-100 overflow-hidden">
@@ -581,9 +639,10 @@ export default function App() {
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center overflow-hidden">
                   <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/SJKC_Logo.svg/1200px-SJKC_Logo.svg.png" 
+                    src="https://lh3.googleusercontent.com/d/16FRnWS7xfkPJP-KaPe-shf9B1jtkEci1" 
                     alt="SJK Sungai Jaong Logo" 
                     className="w-10 h-10 object-contain"
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="font-display font-bold text-xl leading-none">
