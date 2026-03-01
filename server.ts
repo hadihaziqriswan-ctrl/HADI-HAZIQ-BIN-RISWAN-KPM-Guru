@@ -19,6 +19,16 @@ async function startServer() {
   const PORT = 3000;
   const httpServer = createServer(app);
 
+  // API routes
+  app.get("/api/stats", (req, res) => {
+    const totalViews = (getStat.get("total_views") as any)?.value || 0;
+    res.json({ live: viewerCount, total: totalViews });
+  });
+
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok" });
+  });
+
   // WebSocket setup
   const wss = new WebSocketServer({ server: httpServer });
   let viewerCount = 0;
@@ -27,13 +37,20 @@ async function startServer() {
     viewerCount++;
     
     // Increment total views
-    const currentTotal = (getStat.get("total_views") as any).value;
+    const currentTotal = (getStat.get("total_views") as any)?.value || 0;
     const newTotal = currentTotal + 1;
     setStat.run("total_views", newTotal);
 
     console.log(`New viewer connected. Live: ${viewerCount}, Total: ${newTotal}`);
     
-    // Broadcast counts to all clients
+    // Send immediate update to the new client
+    ws.send(JSON.stringify({ 
+      type: "VIEWER_STATS", 
+      live: viewerCount,
+      total: newTotal
+    }));
+
+    // Broadcast counts to all other clients
     broadcastCounts();
 
     ws.on("close", () => {
@@ -44,7 +61,7 @@ async function startServer() {
   });
 
   function broadcastCounts() {
-    const totalViews = (getStat.get("total_views") as any).value;
+    const totalViews = (getStat.get("total_views") as any)?.value || 0;
     const data = JSON.stringify({ 
       type: "VIEWER_STATS", 
       live: viewerCount,
@@ -56,11 +73,6 @@ async function startServer() {
       }
     });
   }
-
-  // API routes
-  app.get("/api/health", (req, res) => {
-    res.json({ status: "ok" });
-  });
 
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {

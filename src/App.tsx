@@ -169,6 +169,12 @@ export default function App() {
   const [viewerStats, setViewerStats] = useState({ live: 1, total: 0 });
 
   useEffect(() => {
+    // Fetch initial stats
+    fetch("/api/stats")
+      .then(res => res.json())
+      .then(data => setViewerStats(data))
+      .catch(err => console.error("Failed to fetch stats", err));
+
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const wsUrl = `${protocol}//${window.location.host}`;
     const socket = new WebSocket(wsUrl);
