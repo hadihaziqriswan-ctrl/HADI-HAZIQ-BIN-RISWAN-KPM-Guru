@@ -167,14 +167,29 @@ const galleryImages = [
 ];
 
 export default function App() {
-  const [viewerStats, setViewerStats] = useState({ live: 1, total: 0 });
+  const [viewerStats, setViewerStats] = useState({ live: 1, total: 1 });
 
   useEffect(() => {
     // Fetch initial stats
-    fetch("/api/stats")
-      .then(res => res.json())
-      .then(data => setViewerStats(data))
-      .catch(err => console.error("Failed to fetch stats", err));
+    const fetchStats = () => {
+      fetch("/api/stats")
+        .then(res => res.json())
+        .then(data => {
+          if (data && typeof data.total === 'number') {
+            setViewerStats(prev => ({
+              live: data.live || prev.live,
+              total: Math.max(data.total, prev.total)
+            }));
+          }
+        })
+        .catch(err => {
+          console.error("Failed to fetch stats", err);
+          // Retry after 3 seconds if it fails
+          setTimeout(fetchStats, 3000);
+        });
+    };
+
+    fetchStats();
 
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     const wsUrl = `${protocol}//${window.location.host}`;

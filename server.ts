@@ -21,8 +21,15 @@ async function startServer() {
 
   // API routes
   app.get("/api/stats", (req, res) => {
-    const totalViews = (getStat.get("total_views") as any)?.value || 0;
-    res.json({ live: viewerCount, total: totalViews });
+    // Increment total views on every stats fetch (initial page load)
+    const currentTotal = (getStat.get("total_views") as any)?.value || 0;
+    const newTotal = currentTotal + 1;
+    setStat.run("total_views", newTotal);
+
+    res.json({ live: viewerCount, total: newTotal });
+    
+    // Broadcast the new total to all connected clients
+    broadcastCounts(newTotal);
   });
 
   app.get("/api/health", (req, res) => {
@@ -36,18 +43,14 @@ async function startServer() {
   wss.on("connection", (ws) => {
     viewerCount++;
     
-    // Increment total views
-    const currentTotal = (getStat.get("total_views") as any)?.value || 0;
-    const newTotal = currentTotal + 1;
-    setStat.run("total_views", newTotal);
-
-    console.log(`New viewer connected. Live: ${viewerCount}, Total: ${newTotal}`);
+    console.log(`New viewer connected. Live: ${viewerCount}`);
     
     // Send immediate update to the new client
+    const totalViews = (getStat.get("total_views") as any)?.value || 0;
     ws.send(JSON.stringify({ 
       type: "VIEWER_STATS", 
       live: viewerCount,
-      total: newTotal
+      total: totalViews
     }));
 
     // Broadcast counts to all other clients
@@ -60,8 +63,8 @@ async function startServer() {
     });
   });
 
-  function broadcastCounts() {
-    const totalViews = (getStat.get("total_views") as any)?.value || 0;
+  function broadcastCounts(forcedTotal?: number) {
+    const totalViews = forcedTotal !== undefined ? forcedTotal : ((getStat.get("total_views") as any)?.value || 0);
     const data = JSON.stringify({ 
       type: "VIEWER_STATS", 
       live: viewerCount,
