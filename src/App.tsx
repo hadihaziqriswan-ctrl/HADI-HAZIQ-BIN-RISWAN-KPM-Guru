@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { 
   Trophy, 
@@ -7,11 +7,15 @@ import {
   Map, 
   Users, 
   ChevronRight, 
+  ChevronDown,
   Star,
   Zap,
   Award,
   Target,
-  Clock
+  Clock,
+  Music,
+  Pause,
+  Play
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -195,8 +199,45 @@ export default function App() {
     };
   }, []);
 
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isB10Expanded, setIsB10Expanded] = useState(false);
+  const [isB11Expanded, setIsB11Expanded] = useState(false);
+  const [isB12Expanded, setIsB12Expanded] = useState(false);
+
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-primary">
+      {/* Music Player */}
+      <div className="fixed bottom-6 left-6 z-[100]">
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="bg-white/90 backdrop-blur-xl border border-zinc-200 shadow-2xl rounded-2xl p-3 flex items-center gap-3 group"
+        >
+          <button 
+            onClick={() => setIsMusicPlaying(!isMusicPlaying)}
+            className={cn(
+              "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300",
+              isMusicPlaying ? "bg-primary text-white shadow-lg shadow-primary/30" : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+            )}
+          >
+            {isMusicPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
+          </button>
+          <div className="pr-4">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-0.5">Now Playing</p>
+            <p className="text-xs font-bold text-zinc-900 truncate max-w-[120px]">Sports Theme</p>
+          </div>
+          
+          {isMusicPlaying && (
+            <audio
+              autoPlay
+              loop
+              src="https://docs.google.com/uc?id=1MWDSEqhmj9gnUvPPior3fKTBIvqWHiUb"
+              className="hidden"
+            />
+          )}
+        </motion.div>
+      </div>
+
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -217,7 +258,7 @@ export default function App() {
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
                 <span className="text-[10px] font-bold uppercase tracking-wider">{viewerStats.live} Live</span>
               </div>
-              <div className="hidden md:flex items-center gap-2 px-2 py-1 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100 ml-2">
+              <div className="flex items-center gap-2 px-2 py-1 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100 ml-2">
                 <Users className="w-3 h-3" />
                 <span className="text-[10px] font-bold uppercase tracking-wider">{viewerStats.total} Total</span>
               </div>
@@ -384,8 +425,8 @@ export default function App() {
               Speed & Precision
             </div>
             <h2 className="font-display text-4xl sm:text-5xl font-bold text-primary mb-6 leading-tight">
-              Track & Field <br />
-              Excellence.
+              Track and Field <br />
+              Athletes.
             </h2>
             <div className="mb-8 p-6 rounded-2xl bg-zinc-50 border border-zinc-100">
               <div className="flex items-center gap-2 text-zinc-500 font-bold uppercase tracking-widest text-xs mb-4">
@@ -397,15 +438,305 @@ export default function App() {
             <p className="text-zinc-600 text-lg mb-8 leading-relaxed">
               From the explosive 100m sprints to the technical precision of the long jump, our athletes have consistently pushed the boundaries of what's possible.
             </p>
-            <div className="space-y-4">
-              {['100m, 200m, 4x100m Relays', 'Long Jump & High Jump', 'Shot Put & Javelin'].map((item) => (
-                <div key={item} className="flex items-center gap-3 text-zinc-700 font-medium">
-                  <div className="w-5 h-5 rounded-full bg-track/10 flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-track" />
+            <div className="space-y-6">
+              {/* B10 Collapsible Section */}
+              <div className="border border-zinc-200 rounded-3xl overflow-hidden bg-white shadow-sm">
+                <button 
+                  onClick={() => setIsB10Expanded(!isB10Expanded)}
+                  className="w-full flex items-center justify-between p-6 hover:bg-zinc-50 transition-colors group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-track/10 flex items-center justify-center text-track">
+                      <Users className="w-6 h-6" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-xl font-display font-bold text-primary">B10 Athletes</h3>
+                      <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider">L10 & P10 Categories</p>
+                    </div>
                   </div>
-                  {item}
-                </div>
-              ))}
+                  <div className={cn(
+                    "w-10 h-10 rounded-full border border-zinc-100 flex items-center justify-center transition-transform duration-300",
+                    isB10Expanded ? "rotate-180 bg-track text-white border-track" : "bg-white text-zinc-400 group-hover:border-zinc-300"
+                  )}>
+                    <ChevronDown className="w-5 h-5" />
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isB10Expanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="p-6 pt-0 space-y-12 border-t border-zinc-100 bg-zinc-50/30">
+                        {[
+                          {
+                            category: "L10",
+                            athletes: [
+                              { name: "Hayyan", events: ["80M"] },
+                              { name: "Keegan", events: ["80M", "Lompat Jauh"] },
+                              { name: "Rayyan", events: ["100M"] },
+                              { name: "Faiq", events: ["Lompat Jauh"] },
+                              { name: "Jericho", events: ["Lontar Peluru"] },
+                              { name: "Adrian Raymond", events: ["Lontar Peluru"] }
+                            ]
+                          },
+                          {
+                            category: "P10",
+                            athletes: [
+                              { name: "Eunice", events: ["80M", "Lompat Tinggi"] },
+                              { name: "Reverly", events: ["80M", "Lontar Peluru"] },
+                              { name: "Jing Wen", events: ["100M", "Lompat Jauh"] },
+                              { name: "Clarissa", events: ["Lompat Jauh"] },
+                              { name: "Jeannea", events: ["100M", "Lompat Jauh"] }
+                            ]
+                          }
+                        ].map((group, groupIdx) => (
+                          <div key={group.category} className="space-y-4">
+                            <div className="flex items-center gap-3 mb-6">
+                              <div className="px-3 py-1 bg-track text-white text-[10px] font-bold uppercase tracking-widest rounded-lg">
+                                Category: {group.category}
+                              </div>
+                              <div className="h-px flex-1 bg-zinc-200" />
+                            </div>
+                            
+                            {group.athletes.map((athlete, idx) => (
+                              <motion.div 
+                                key={athlete.name}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="group relative flex items-center gap-6 p-4 rounded-2xl bg-white border border-zinc-100 hover:border-track/30 hover:shadow-xl hover:shadow-track/5 transition-all duration-300"
+                              >
+                                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-zinc-50 flex items-center justify-center text-xl font-display font-black text-zinc-300 group-hover:bg-track group-hover:text-white transition-colors duration-300">
+                                  {String(idx + 1).padStart(2, '0')}
+                                </div>
+                                
+                                <div className="flex-1">
+                                  <h4 className="font-bold text-zinc-900 group-hover:text-track transition-colors">{athlete.name}</h4>
+                                  <div className="flex flex-wrap gap-2 mt-2">
+                                    {athlete.events.map(event => (
+                                      <span key={event} className="px-2 py-0.5 bg-zinc-100 text-zinc-500 text-[10px] font-bold uppercase tracking-wider rounded-md group-hover:bg-track/10 group-hover:text-track transition-colors">
+                                        {event}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                                
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                                  <ChevronRight className="w-5 h-5 text-track" />
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* B11 Collapsible Section */}
+              <div className="border border-zinc-200 rounded-3xl overflow-hidden bg-white shadow-sm">
+                <button 
+                  onClick={() => setIsB11Expanded(!isB11Expanded)}
+                  className="w-full flex items-center justify-between p-6 hover:bg-zinc-50 transition-colors group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-track/10 flex items-center justify-center text-track">
+                      <Users className="w-6 h-6" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-xl font-display font-bold text-primary">B11 Athletes</h3>
+                      <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider">L11 & P11 Categories</p>
+                    </div>
+                  </div>
+                  <div className={cn(
+                    "w-10 h-10 rounded-full border border-zinc-100 flex items-center justify-center transition-transform duration-300",
+                    isB11Expanded ? "rotate-180 bg-track text-white border-track" : "bg-white text-zinc-400 group-hover:border-zinc-300"
+                  )}>
+                    <ChevronDown className="w-5 h-5" />
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isB11Expanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="p-6 pt-0 space-y-12 border-t border-zinc-100 bg-zinc-50/30">
+                        {[
+                          {
+                            category: "L11",
+                            athletes: [
+                              { name: "Robbin", events: ["100M", "Lompat Tinggi"] },
+                              { name: "Khedribvand", events: ["100M", "Lompat Jauh"] },
+                              { name: "Celvin", events: ["200M"] },
+                              { name: "Gerald", events: ["200M", "80M Berpagar"] },
+                              { name: "Alexson", events: ["80M Berpagar"] },
+                              { name: "Ben Yuan", events: ["Lompat Tinggi"] },
+                              { name: "Admin", events: ["Lompat Jauh"] },
+                              { name: "Chris Samuel", events: ["Lontar Peluru"] }
+                            ]
+                          },
+                          {
+                            category: "P11",
+                            athletes: [
+                              { name: "Avril", events: ["100M", "Lompat Tinggi"] },
+                              { name: "Ashley", events: ["200M", "Lompat Jauh"] },
+                              { name: "Illyvia", events: ["200M", "Lontar Peluru"] }
+                            ]
+                          }
+                        ].map((group, groupIdx) => (
+                          <div key={group.category} className="space-y-4">
+                            <div className="flex items-center gap-3 mb-6">
+                              <div className="px-3 py-1 bg-track text-white text-[10px] font-bold uppercase tracking-widest rounded-lg">
+                                Category: {group.category}
+                              </div>
+                              <div className="h-px flex-1 bg-zinc-200" />
+                            </div>
+                            
+                            {group.athletes.map((athlete, idx) => (
+                              <motion.div 
+                                key={athlete.name}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="group relative flex items-center gap-6 p-4 rounded-2xl bg-white border border-zinc-100 hover:border-track/30 hover:shadow-xl hover:shadow-track/5 transition-all duration-300"
+                              >
+                                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-zinc-50 flex items-center justify-center text-xl font-display font-black text-zinc-300 group-hover:bg-track group-hover:text-white transition-colors duration-300">
+                                  {String(idx + 1).padStart(2, '0')}
+                                </div>
+                                
+                                <div className="flex-1">
+                                  <h4 className="font-bold text-zinc-900 group-hover:text-track transition-colors">{athlete.name}</h4>
+                                  <div className="flex flex-wrap gap-2 mt-2">
+                                    {athlete.events.map(event => (
+                                      <span key={event} className="px-2 py-0.5 bg-zinc-100 text-zinc-500 text-[10px] font-bold uppercase tracking-wider rounded-md group-hover:bg-track/10 group-hover:text-track transition-colors">
+                                        {event}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                                
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                                  <ChevronRight className="w-5 h-5 text-track" />
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* B12 Collapsible Section */}
+              <div className="border border-zinc-200 rounded-3xl overflow-hidden bg-white shadow-sm">
+                <button 
+                  onClick={() => setIsB12Expanded(!isB12Expanded)}
+                  className="w-full flex items-center justify-between p-6 hover:bg-zinc-50 transition-colors group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-track/10 flex items-center justify-center text-track">
+                      <Users className="w-6 h-6" />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-xl font-display font-bold text-primary">B12 Athletes</h3>
+                      <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider">L12 & P12 Categories</p>
+                    </div>
+                  </div>
+                  <div className={cn(
+                    "w-10 h-10 rounded-full border border-zinc-100 flex items-center justify-center transition-transform duration-300",
+                    isB12Expanded ? "rotate-180 bg-track text-white border-track" : "bg-white text-zinc-400 group-hover:border-zinc-300"
+                  )}>
+                    <ChevronDown className="w-5 h-5" />
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isB12Expanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="p-6 pt-0 space-y-12 border-t border-zinc-100 bg-zinc-50/30">
+                        {[
+                          {
+                            category: "L12",
+                            athletes: [
+                              { name: "Aazad", events: ["100M", "80M Berpagar"] },
+                              { name: "Jarvis", events: ["100M", "Lompat Tinggi"] },
+                              { name: "William", events: ["200M", "Lompat Jauh"] },
+                              { name: "Theodor", events: ["200M", "Lompat Tinggi"] },
+                              { name: "Ariq Ziqri", events: ["Lontar Peluru"] },
+                              { name: "Chris Evans", events: ["Lontar Peluru"] },
+                              { name: "Daniel Mickhael", events: ["Lontar Peluru"] },
+                              { name: "Michelle Steanly", events: ["Lontar Peluru"] }
+                            ]
+                          },
+                          {
+                            category: "P12",
+                            athletes: [
+                              { name: "Maxclyn", events: ["100M", "200M"] },
+                              { name: "Clarisse", events: ["100M", "Lompat Jauh"] },
+                              { name: "Yancy", events: ["200M", "80M Berpagar"] },
+                              { name: "Hong Chen Ling", events: ["Lontar Peluru"] },
+                              { name: "Jessy Wong", events: ["Lontar Peluru"] }
+                            ]
+                          }
+                        ].map((group, groupIdx) => (
+                          <div key={group.category} className="space-y-4">
+                            <div className="flex items-center gap-3 mb-6">
+                              <div className="px-3 py-1 bg-track text-white text-[10px] font-bold uppercase tracking-widest rounded-lg">
+                                Category: {group.category}
+                              </div>
+                              <div className="h-px flex-1 bg-zinc-200" />
+                            </div>
+                            
+                            {group.athletes.map((athlete, idx) => (
+                              <motion.div 
+                                key={athlete.name}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="group relative flex items-center gap-6 p-4 rounded-2xl bg-white border border-zinc-100 hover:border-track/30 hover:shadow-xl hover:shadow-track/5 transition-all duration-300"
+                              >
+                                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-zinc-50 flex items-center justify-center text-xl font-display font-black text-zinc-300 group-hover:bg-track group-hover:text-white transition-colors duration-300">
+                                  {String(idx + 1).padStart(2, '0')}
+                                </div>
+                                
+                                <div className="flex-1">
+                                  <h4 className="font-bold text-zinc-900 group-hover:text-track transition-colors">{athlete.name}</h4>
+                                  <div className="flex flex-wrap gap-2 mt-2">
+                                    {athlete.events.map(event => (
+                                      <span key={event} className="px-2 py-0.5 bg-zinc-100 text-zinc-500 text-[10px] font-bold uppercase tracking-wider rounded-md group-hover:bg-track/10 group-hover:text-track transition-colors">
+                                        {event}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                                
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                                  <ChevronRight className="w-5 h-5 text-track" />
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
           <div className="order-1 lg:order-2 relative">
