@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { 
   Trophy, 
   Medal, 
@@ -12,10 +12,7 @@ import {
   Zap,
   Award,
   Target,
-  Clock,
-  Music,
-  Pause,
-  Play
+  Clock
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -199,45 +196,12 @@ export default function App() {
     };
   }, []);
 
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isB10Expanded, setIsB10Expanded] = useState(false);
   const [isB11Expanded, setIsB11Expanded] = useState(false);
   const [isB12Expanded, setIsB12Expanded] = useState(false);
 
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-primary">
-      {/* Music Player */}
-      <div className="fixed bottom-6 left-6 z-[100]">
-        <motion.div 
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="bg-white/90 backdrop-blur-xl border border-zinc-200 shadow-2xl rounded-2xl p-3 flex items-center gap-3 group"
-        >
-          <button 
-            onClick={() => setIsMusicPlaying(!isMusicPlaying)}
-            className={cn(
-              "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300",
-              isMusicPlaying ? "bg-primary text-white shadow-lg shadow-primary/30" : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
-            )}
-          >
-            {isMusicPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
-          </button>
-          <div className="pr-4">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-0.5">Now Playing</p>
-            <p className="text-xs font-bold text-zinc-900 truncate max-w-[120px]">Sports Theme</p>
-          </div>
-          
-          {isMusicPlaying && (
-            <audio
-              autoPlay
-              loop
-              src="https://docs.google.com/uc?id=1MWDSEqhmj9gnUvPPior3fKTBIvqWHiUb"
-              className="hidden"
-            />
-          )}
-        </motion.div>
-      </div>
-
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -254,21 +218,33 @@ export default function App() {
               <span className="font-display font-bold text-lg tracking-tight hidden sm:block">
                 SJK SUNGAI JAONG SPORTS
               </span>
-              <div className="flex items-center gap-2 px-2 py-1 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100 ml-4">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-wider">{viewerStats.live} Live</span>
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100 ml-4">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-wider">{viewerStats.live} Live</span>
               </div>
-              <div className="flex items-center gap-2 px-2 py-1 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100 ml-2">
-                <Users className="w-3 h-3" />
-                <span className="text-[10px] font-bold uppercase tracking-wider">{viewerStats.total} Total</span>
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100 ml-2">
+                <Users className="w-3.5 h-3.5" />
+                <span className="text-xs font-bold uppercase tracking-wider">{viewerStats.total} Total Views</span>
+              </div>
+              
+              {/* Mobile Stats - More compact */}
+              <div className="flex sm:hidden items-center gap-2 ml-2">
+                <div className="flex items-center gap-1 px-2 py-1 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
+                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+                  <span className="text-[10px] font-bold">{viewerStats.live}</span>
+                </div>
+                <div className="flex items-center gap-1 px-2 py-1 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100">
+                  <Users className="w-2.5 h-2.5" />
+                  <span className="text-[10px] font-bold">{viewerStats.total}</span>
+                </div>
               </div>
             </div>
-              <div className="flex gap-6 text-sm font-medium text-zinc-600">
-                <a href="#track-field" className="hover:text-primary transition-colors">Track & Field</a>
-                <a href="#merentas-desa" className="hover:text-primary transition-colors">Merentas Desa</a>
-                <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
-                <a href="#hall-of-fame" className="hover:text-primary transition-colors">Hall of Fame</a>
-              </div>
+            <div className="hidden lg:flex gap-6 text-sm font-medium text-zinc-600">
+              <a href="#track-field" className="hover:text-primary transition-colors">Track & Field</a>
+              <a href="#merentas-desa" className="hover:text-primary transition-colors">Merentas Desa</a>
+              <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
+              <a href="#hall-of-fame" className="hover:text-primary transition-colors">Hall of Fame</a>
+            </div>
           </div>
         </div>
       </nav>
@@ -1030,7 +1006,19 @@ export default function App() {
           </div>
           
           <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-500 font-medium">
-            <p>© 2024 SJK Sungai Jaong. All rights reserved.</p>
+            <div className="flex flex-col gap-1">
+              <p>© 2024 SJK Sungai Jaong. All rights reserved.</p>
+              <div className="flex items-center gap-4 mt-2">
+                <div className="flex items-center gap-1.5 text-emerald-400">
+                  <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+                  <span>{viewerStats.live} Live Now</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-zinc-400">
+                  <Users className="w-3 h-3" />
+                  <span>{viewerStats.total} Total Platform Views</span>
+                </div>
+              </div>
+            </div>
             <div className="flex gap-8">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
