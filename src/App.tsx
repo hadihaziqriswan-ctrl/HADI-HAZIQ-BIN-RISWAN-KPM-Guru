@@ -147,6 +147,7 @@ const merentasDesaResults = {
 };
 
 const galleryImages = [
+  { url: "https://lh3.googleusercontent.com/d/1jknLdJnJKrFXLYyRJ8DvbnIweyPe-gDt", category: "Highlights", title: "Merentas Desa Champions" },
   { url: "https://lh3.googleusercontent.com/d/1LZv4HyaNe_MpPpAxzBX-xl5asevMi5nN", category: "Merentas Desa", title: "Cross Country Moment" },
   { url: "https://lh3.googleusercontent.com/d/11kdRWhL4PdIXAjEjK8QpqrPr2SDqfBlr", category: "Merentas Desa", title: "Determination" },
   { url: "https://lh3.googleusercontent.com/d/1VxtDvarrRv2FhSpBT2fqfjJnRSMxadO8", category: "Merentas Desa", title: "Team Effort" },
@@ -419,6 +420,52 @@ export default function App() {
               Track and Field <br />
               Athletes.
             </h2>
+
+            {/* Athlete Summary Stats */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div className="bg-white p-5 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group">
+                <div className="flex items-center gap-2 text-blue-600 mb-2">
+                  <div className="w-6 h-6 rounded-lg bg-blue-50 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <Users className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Lelaki (L)</span>
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <div className="text-3xl font-display font-black text-primary">22</div>
+                  <div className="text-xs text-zinc-400 font-bold uppercase tracking-tighter">Athletes</div>
+                </div>
+              </div>
+              
+              <div className="bg-white p-5 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl hover:shadow-pink-500/5 transition-all duration-300 group">
+                <div className="flex items-center gap-2 text-pink-600 mb-2">
+                  <div className="w-6 h-6 rounded-lg bg-pink-50 flex items-center justify-center group-hover:bg-pink-600 group-hover:text-white transition-colors">
+                    <Users className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Perempuan (P)</span>
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <div className="text-3xl font-display font-black text-primary">13</div>
+                  <div className="text-xs text-zinc-400 font-bold uppercase tracking-tighter">Athletes</div>
+                </div>
+              </div>
+              
+              <div className="bg-track p-5 rounded-3xl shadow-xl shadow-track/20 group relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 blur-2xl" />
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 text-white/80 mb-2">
+                    <div className="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center">
+                      <Award className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest">Overall (P + L)</span>
+                  </div>
+                  <div className="flex items-baseline gap-1">
+                    <div className="text-3xl font-display font-black text-white">35</div>
+                    <div className="text-xs text-white/60 font-bold uppercase tracking-tighter">Total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="mb-8 p-6 rounded-2xl bg-zinc-50 border border-zinc-100">
               <div className="flex items-center gap-2 text-zinc-500 font-bold uppercase tracking-widest text-xs mb-4">
                 <Clock className="w-4 h-4" />
@@ -753,8 +800,8 @@ export default function App() {
             <div className="relative">
               <div className="aspect-square rounded-3xl overflow-hidden bg-zinc-200 shadow-2xl">
                 <img 
-                  src="https://picsum.photos/seed/crosscountry/800/800" 
-                  alt="Merentas Desa" 
+                  src="https://lh3.googleusercontent.com/d/1jknLdJnJKrFXLYyRJ8DvbnIweyPe-gDt" 
+                  alt="Merentas Desa Champions" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
