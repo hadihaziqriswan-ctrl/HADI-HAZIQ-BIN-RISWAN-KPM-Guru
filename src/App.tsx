@@ -124,6 +124,37 @@ const stats = [
   { label: "Total Athletes", value: "32", icon: <Users className="text-blue-500" /> },
 ];
 
+const mssr2026Results = {
+  totalMedals: 20,
+  gold: 5,
+  silver: 8,
+  bronze: 7,
+  achievements: [
+    { athlete: "Robbin Wong", event: "Lompat Tinggi", rank: "Gold", record: "Champion" },
+    { athlete: "Avril Aren", event: "100m & Lompat Tinggi", rank: "Gold", record: "Double Gold" },
+    { athlete: "Keegan Intix", event: "Lompat Jauh", rank: "Gold", record: "Champion" },
+    { athlete: "Daniel Mickael", event: "Lontar Peluru", rank: "Gold", record: "Champion" },
+    { athlete: "Gerald Sia", event: "Lari Berpagar 80m", rank: "Silver", record: "Finalist" },
+    { athlete: "Illyvia Vixca", event: "Lari Berpagar 80m", rank: "Silver", record: "Finalist" },
+    { athlete: "Seth Lawai", event: "Lompat Jauh", rank: "Silver", record: "Finalist" },
+    { athlete: "Jessy Wong", event: "Lontar Peluru", rank: "Silver", record: "Finalist" },
+    { athlete: "Kathlyn Elva", event: "Lompat Tinggi & 100m", rank: "Silver", record: "Double Silver" },
+  ]
+};
+
+const mssd2026Results = {
+  totalMedals: 4,
+  gold: 2,
+  silver: 1,
+  bronze: 1,
+  achievements: [
+    { athlete: "Avril Aren", event: "200M", rank: "Gold", record: "Winner" },
+    { athlete: "Kathlyn Elva", event: "Lompat Tinggi", rank: "Gold", record: "Winner" },
+    { athlete: "Daniel Mickael", event: "Lontar Peluru", rank: "Silver", record: "Finalist" },
+    { athlete: "Avril Aren", event: "100M", rank: "Bronze", record: "Podium" },
+  ]
+};
+
 const merentasDesaResults = {
   overall: {
     lelaki: "No. 10",
@@ -256,6 +287,8 @@ export default function App() {
               </div>
             </div>
             <div className="hidden lg:flex gap-6 text-sm font-medium text-zinc-600">
+              <a href="#mssr-2026" className="hover:text-primary transition-colors font-bold text-accent">MSSR 2026</a>
+              <a href="#mssd-2026" className="hover:text-primary transition-colors font-bold text-orange-500">MSSD 2026</a>
               <a href="#track-field" className="hover:text-primary transition-colors">Track & Field</a>
               <a href="#merentas-desa" className="hover:text-primary transition-colors">Merentas Desa</a>
               <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
@@ -790,6 +823,192 @@ export default function App() {
               <Award className="w-8 h-8 text-primary mb-4" />
               <div className="text-2xl font-display font-bold text-primary leading-none">15 GOLD</div>
               <div className="text-xs text-primary/60 font-bold uppercase tracking-wider mt-1">MSSR ZON BARAM HILIR 2025</div>
+            </div>
+          </div>
+        </section>
+
+        {/* MSSR 2026 Section */}
+        <section id="mssr-2026" className="relative my-24">
+          <div className="absolute inset-0 bg-primary/5 rounded-[4rem] -z-10" />
+          <div className="p-8 sm:p-16">
+            <div className="flex flex-col lg:flex-row gap-12 items-center">
+              <div className="flex-1 space-y-8">
+                <div>
+                  <div className="inline-flex items-center gap-2 text-accent font-bold uppercase tracking-widest text-sm mb-4">
+                    <Star className="w-4 h-4 fill-accent" />
+                    New Achievement 2026
+                  </div>
+                  <h2 className="font-display text-4xl sm:text-6xl font-black text-primary leading-tight">
+                    MSSR ZON <br />
+                    BARAM HILIR 2026.
+                  </h2>
+                </div>
+                
+                <p className="text-zinc-600 text-lg leading-relaxed max-w-xl">
+                  Celebrating our champion's outstanding performance at the MSSR Zon Baram Hilir 2026. Our athletes demonstrated peak physical conditioning and unmatched sportsmanship.
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  <div className="bg-white p-6 rounded-3xl shadow-sm border border-zinc-100">
+                    <div className="text-3xl font-display font-black text-primary">{mssr2026Results.gold}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Gold</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-3xl shadow-sm border border-zinc-100">
+                    <div className="text-3xl font-display font-black text-primary">{mssr2026Results.silver}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Silver</div>
+                  </div>
+                  <div className="bg-white p-6 rounded-3xl shadow-sm border border-zinc-100">
+                    <div className="text-3xl font-display font-black text-primary">{mssr2026Results.bronze}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Bronze</div>
+                  </div>
+                  <div className="bg-accent p-6 rounded-3xl shadow-lg shadow-accent/20">
+                    <div className="text-3xl font-display font-black text-primary">{mssr2026Results.totalMedals}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-primary/60">Total</div>
+                  </div>
+                </div>
+
+                {/* Olahragawati Section */}
+                <div className="mt-8 p-8 bg-gradient-to-br from-primary to-primary-dark rounded-[3rem] text-white relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-accent/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-accent/30 transition-colors" />
+                  <div className="flex flex-col sm:flex-row items-center gap-8 relative z-10">
+                    <div className="relative">
+                      <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl overflow-hidden border-4 border-accent/50 shadow-2xl">
+                        <img 
+                          src="https://lh3.googleusercontent.com/d/1JV5s5MKEhl7aFcbaBGnt5wMk3hmDwKTJ" 
+                          alt="Avril Aren" 
+                          className="w-full h-full object-cover"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      <div className="absolute -bottom-3 -right-3 bg-accent text-primary p-2 rounded-xl shadow-lg transform group-hover:scale-110 transition-transform">
+                        <Trophy className="w-6 h-6" />
+                      </div>
+                    </div>
+                    <div className="text-center sm:text-left flex-1">
+                      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent text-primary text-xs font-black uppercase tracking-widest rounded-full mb-4">
+                        <Star className="w-4 h-4 fill-primary" />
+                        Olahragawati 2026
+                      </div>
+                      <h4 className="text-3xl sm:text-4xl font-display font-black leading-tight">Avril Aren</h4>
+                      <p className="text-white/70 text-sm font-bold uppercase tracking-widest mt-2">SJK Sungai Jaong Pride</p>
+                      <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-2">
+                        <span className="px-3 py-1 bg-white/10 rounded-lg text-[10px] font-bold uppercase tracking-wider">100M Gold</span>
+                        <span className="px-3 py-1 bg-white/10 rounded-lg text-[10px] font-bold uppercase tracking-wider">Lompat Tinggi Gold</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex-1 w-full">
+                <div className="bg-white rounded-3xl p-8 border border-zinc-100 shadow-xl">
+                  <h3 className="font-display text-2xl font-bold text-primary mb-6 flex items-center gap-2">
+                    <Award className="w-6 h-6 text-accent" />
+                    Medalists Spotlight
+                  </h3>
+                  <div className="space-y-4">
+                    {mssr2026Results.achievements.map((ach, i) => (
+                      <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-zinc-50 hover:bg-accent/5 transition-colors group">
+                        <div className="flex items-center gap-4">
+                          <div className={cn(
+                            "w-10 h-10 rounded-xl flex items-center justify-center font-bold",
+                            ach.rank === "Gold" ? "bg-accent text-primary" : "bg-zinc-200 text-zinc-600"
+                          )}>
+                            {ach.rank[0]}
+                          </div>
+                          <div>
+                            <div className="font-bold text-primary group-hover:text-accent transition-colors">{ach.athlete}</div>
+                            <div className="text-xs text-zinc-500 font-medium">{ach.event}</div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm font-bold text-primary">{ach.record}</div>
+                          <div className="text-[10px] text-zinc-400 font-bold uppercase tracking-tighter">Record</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* MSSD 2026 Section */}
+        <section id="mssd-2026" className="relative my-24 overflow-hidden rounded-[4rem] bg-zinc-900 text-white">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full -mr-48 -mt-48 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full -ml-48 -mb-48 blur-3xl" />
+          
+          <div className="p-8 sm:p-16 relative z-10">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              <div className="flex-1 space-y-8">
+                <div>
+                  <div className="inline-flex items-center gap-2 text-orange-500 font-bold uppercase tracking-widest text-sm mb-4">
+                    <Target className="w-4 h-4" />
+                    District Level Competition
+                  </div>
+                  <h2 className="font-display text-4xl sm:text-6xl font-black leading-tight">
+                    MSSD BARAM <br />
+                    DISTRICT 2026.
+                  </h2>
+                </div>
+                
+                <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
+                  Our elite athletes represented the school at the district level, competing against the best in Baram. A testament to our training program and athlete dedication.
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10">
+                    <div className="text-3xl font-display font-black text-orange-500">{mssd2026Results.gold}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Gold</div>
+                  </div>
+                  <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10">
+                    <div className="text-3xl font-display font-black text-zinc-300">{mssd2026Results.silver}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Silver</div>
+                  </div>
+                  <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10">
+                    <div className="text-3xl font-display font-black text-orange-800">{mssd2026Results.bronze}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Bronze</div>
+                  </div>
+                  <div className="bg-orange-500 p-6 rounded-3xl shadow-lg shadow-orange-500/20">
+                    <div className="text-3xl font-display font-black text-zinc-900">{mssd2026Results.totalMedals}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-900/60">Total</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex-1 w-full">
+                <div className="bg-white/5 backdrop-blur-xl rounded-4xl p-8 border border-white/10 shadow-2xl">
+                  <h3 className="font-display text-2xl font-bold mb-8 flex items-center gap-3">
+                    <Award className="w-8 h-8 text-orange-500" />
+                    MSSD Medalists Spotlight
+                  </h3>
+                  <div className="space-y-6">
+                    {mssd2026Results.achievements.map((ach, i) => (
+                      <div key={i} className="flex items-center justify-between p-5 rounded-3xl bg-white/5 hover:bg-white/10 transition-all group">
+                        <div className="flex items-center gap-5">
+                          <div className={cn(
+                            "w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg",
+                            ach.rank === "Gold" ? "bg-orange-500 text-zinc-900" : 
+                            ach.rank === "Silver" ? "bg-zinc-300 text-zinc-900" : 
+                            "bg-orange-900 text-white"
+                          )}>
+                            {ach.rank[0]}
+                          </div>
+                          <div>
+                            <div className="font-bold text-lg group-hover:text-orange-500 transition-colors">{ach.athlete}</div>
+                            <div className="text-sm text-zinc-400 font-medium">{ach.event}</div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-md font-bold text-white">{ach.rank}</div>
+                          <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Medal</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
