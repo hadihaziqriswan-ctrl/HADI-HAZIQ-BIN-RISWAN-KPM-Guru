@@ -12,7 +12,9 @@ import {
   Zap,
   Award,
   Target,
-  Clock
+  Clock,
+  Menu,
+  X
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -125,11 +127,12 @@ const stats = [
 ];
 
 const mssr2026Results = {
-  totalMedals: 20,
-  gold: 5,
+  totalMedals: 21,
+  gold: 6,
   silver: 8,
   bronze: 7,
   achievements: [
+    { athlete: "Team SJK SJ", event: "Bola Baling", rank: "Gold", record: "Champion" },
     { athlete: "Robbin Wong", event: "Lompat Tinggi", rank: "Gold", record: "Champion" },
     { athlete: "Avril Aren", event: "100m & Lompat Tinggi", rank: "Gold", record: "Double Gold" },
     { athlete: "Keegan Intix", event: "Lompat Jauh", rank: "Gold", record: "Champion" },
@@ -204,7 +207,7 @@ export default function App() {
   useEffect(() => {
     // Fetch initial stats
     const fetchStats = () => {
-      fetch("/api/stats")
+      fetch("/api/stats", { cache: 'no-store' })
         .then(res => res.json())
         .then(data => {
           if (data && typeof data.total === 'number') {
@@ -246,6 +249,7 @@ export default function App() {
   const [isB10Expanded, setIsB10Expanded] = useState(false);
   const [isB11Expanded, setIsB11Expanded] = useState(false);
   const [isB12Expanded, setIsB12Expanded] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen font-sans selection:bg-accent selection:text-primary">
@@ -253,39 +257,33 @@ export default function App() {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center overflow-hidden">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-lg flex items-center justify-center overflow-hidden shrink-0">
                 <img 
                   src="https://lh3.googleusercontent.com/d/16FRnWS7xfkPJP-KaPe-shf9B1jtkEci1" 
                   alt="SJK Sungai Jaong Logo" 
-                  className="w-8 h-8 object-contain"
+                  className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <span className="font-display font-bold text-lg tracking-tight hidden sm:block">
+              <span className="font-display font-bold text-sm sm:text-lg tracking-tight truncate max-w-[120px] sm:max-w-none">
                 SJK SUNGAI JAONG SPORTS
               </span>
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100 ml-4">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-wider">{viewerStats.live} Live</span>
-              </div>
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100 ml-2">
-                <Users className="w-3.5 h-3.5" />
-                <span className="text-xs font-bold uppercase tracking-wider">{viewerStats.total} Total Views</span>
-              </div>
               
-              {/* Mobile Stats - More compact */}
-              <div className="flex sm:hidden items-center gap-2 ml-2">
-                <div className="flex items-center gap-1 px-2 py-1 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
-                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-                  <span className="text-[10px] font-bold">{viewerStats.live}</span>
+              {/* Stats - Adjusted for all screens */}
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
+                  <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-emerald-500 rounded-full animate-pulse shrink-0" />
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">{viewerStats.live} <span className="hidden xs:inline">Live</span></span>
                 </div>
-                <div className="flex items-center gap-1 px-2 py-1 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100">
-                  <Users className="w-2.5 h-2.5" />
-                  <span className="text-[10px] font-bold">{viewerStats.total}</span>
+                <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-zinc-50 text-zinc-500 rounded-full border border-zinc-100">
+                  <Users className="w-2.5 sm:w-3.5 h-2.5 sm:h-3.5 shrink-0" />
+                  <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">{viewerStats.total} <span className="hidden xs:inline">Views</span></span>
                 </div>
               </div>
             </div>
+
+            {/* Desktop Navigation */}
             <div className="hidden lg:flex gap-6 text-sm font-medium text-zinc-600">
               <a href="#mssr-2026" className="hover:text-primary transition-colors font-bold text-accent">MSSR 2026</a>
               <a href="#mssd-2026" className="hover:text-primary transition-colors font-bold text-orange-500">MSSD 2026</a>
@@ -294,8 +292,51 @@ export default function App() {
               <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
               <a href="#hall-of-fame" className="hover:text-primary transition-colors">Hall of Fame</a>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 rounded-xl bg-zinc-100 text-zinc-600"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden border-t border-zinc-100 bg-white overflow-hidden"
+            >
+              <div className="px-4 py-6 flex flex-col gap-4">
+                {[
+                  { name: "MSSR 2026", href: "#mssr-2026", color: "text-accent" },
+                  { name: "MSSD 2026", href: "#mssd-2026", color: "text-orange-500" },
+                  { name: "Track & Field", href: "#track-field" },
+                  { name: "Merentas Desa", href: "#merentas-desa" },
+                  { name: "Gallery", href: "#gallery" },
+                  { name: "Hall of Fame", href: "#hall-of-fame" }
+                ].map((item) => (
+                  <a 
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={cn(
+                      "text-base font-bold px-4 py-2 rounded-xl transition-colors",
+                      item.color || "text-zinc-600 hover:bg-zinc-50"
+                    )}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
@@ -320,7 +361,7 @@ export default function App() {
               <Star className="w-3 h-3 fill-accent" />
               Excellence in Motion
             </div>
-            <h1 className="font-display text-6xl sm:text-8xl font-black leading-[0.9] tracking-tighter mb-8">
+            <h1 className="font-display text-4xl sm:text-8xl font-black leading-[0.9] tracking-tighter mb-8">
               CHAMPIONS <br />
               <span className="text-accent">BEYOND</span> <br />
               LIMITS.
@@ -341,9 +382,9 @@ export default function App() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative -mt-16 z-10">
+      <section className="relative -mt-12 sm:-mt-16 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4 max-w-3xl mx-auto">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -867,34 +908,49 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Olahragawati Section */}
-                <div className="mt-8 p-8 bg-gradient-to-br from-primary to-primary-dark rounded-[3rem] text-white relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-48 h-48 bg-accent/20 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-accent/30 transition-colors" />
-                  <div className="flex flex-col sm:flex-row items-center gap-8 relative z-10">
-                    <div className="relative">
-                      <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl overflow-hidden border-4 border-accent/50 shadow-2xl">
-                        <img 
-                          src="https://lh3.googleusercontent.com/d/1JV5s5MKEhl7aFcbaBGnt5wMk3hmDwKTJ" 
-                          alt="Avril Aren" 
-                          className="w-full h-full object-cover"
-                          referrerPolicy="no-referrer"
-                        />
+                {/* Olahragawati & Bola Baling Grid */}
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="p-6 sm:p-8 bg-gradient-to-br from-primary to-primary-dark rounded-[2.5rem] sm:rounded-[3rem] text-white relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-32 sm:w-48 h-32 sm:h-48 bg-accent/20 rounded-full -mr-16 sm:-mr-24 -mt-16 sm:-mt-24 blur-3xl group-hover:bg-accent/30 transition-colors" />
+                    <div className="flex flex-col items-center sm:items-start gap-6 sm:gap-8 relative z-10">
+                      <div className="relative">
+                        <div className="w-24 h-24 sm:w-40 sm:h-40 rounded-2xl sm:rounded-3xl overflow-hidden border-2 sm:border-4 border-accent/50 shadow-2xl">
+                          <img 
+                            src="https://lh3.googleusercontent.com/d/1JV5s5MKEhl7aFcbaBGnt5wMk3hmDwKTJ" 
+                            alt="Avril Aren" 
+                            className="w-full h-full object-cover"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                        <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 bg-accent text-primary p-1.5 sm:p-2 rounded-lg sm:rounded-xl shadow-lg transform group-hover:scale-110 transition-transform">
+                          <Trophy className="w-4 h-4 sm:w-6 sm:h-6" />
+                        </div>
                       </div>
-                      <div className="absolute -bottom-3 -right-3 bg-accent text-primary p-2 rounded-xl shadow-lg transform group-hover:scale-110 transition-transform">
-                        <Trophy className="w-6 h-6" />
+                      <div className="text-center sm:text-left flex-1">
+                        <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 bg-accent text-primary text-[10px] sm:text-xs font-black uppercase tracking-widest rounded-full mb-3 sm:mb-4">
+                          <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-primary" />
+                          Olahragawati 2026
+                        </div>
+                        <h4 className="text-2xl sm:text-4xl font-display font-black leading-tight">Avril Aren</h4>
+                        <p className="text-white/70 text-[10px] sm:text-sm font-bold uppercase tracking-widest mt-1 sm:mt-2">SJK Sungai Jaong Pride</p>
                       </div>
                     </div>
-                    <div className="text-center sm:text-left flex-1">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent text-primary text-xs font-black uppercase tracking-widest rounded-full mb-4">
-                        <Star className="w-4 h-4 fill-primary" />
-                        Olahragawati 2026
+                  </div>
+
+                  <div className="min-h-[300px] sm:min-h-0 p-8 bg-white border border-zinc-100 rounded-[3rem] relative overflow-hidden group shadow-xl">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+                    <img 
+                      src="https://lh3.googleusercontent.com/d/1-tYtPCd1Fs2S63L2vQqvhlwibs0E_noY" 
+                      alt="Bola Baling Champions" 
+                      className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="relative z-20 h-full flex flex-col justify-end">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent text-primary text-[10px] font-black uppercase tracking-widest rounded-full mb-2 w-fit">
+                        Champions
                       </div>
-                      <h4 className="text-3xl sm:text-4xl font-display font-black leading-tight">Avril Aren</h4>
-                      <p className="text-white/70 text-sm font-bold uppercase tracking-widest mt-2">SJK Sungai Jaong Pride</p>
-                      <div className="mt-4 flex flex-wrap justify-center sm:justify-start gap-2">
-                        <span className="px-3 py-1 bg-white/10 rounded-lg text-[10px] font-bold uppercase tracking-wider">100M Gold</span>
-                        <span className="px-3 py-1 bg-white/10 rounded-lg text-[10px] font-bold uppercase tracking-wider">Lompat Tinggi Gold</span>
-                      </div>
+                      <h4 className="text-2xl font-display font-black text-white">Bola Baling Team</h4>
+                      <p className="text-white/80 text-[10px] font-bold uppercase tracking-widest">MSSR Zon Baram Hilir 2026</p>
                     </div>
                   </div>
                 </div>
@@ -1152,7 +1208,7 @@ export default function App() {
             </a>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {galleryImages.map((image, i) => (
               <motion.div
                 key={image.url}
