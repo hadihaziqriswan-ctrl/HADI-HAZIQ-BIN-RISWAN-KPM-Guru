@@ -158,6 +158,20 @@ const mssd2026Results = {
   ]
 };
 
+const mssb2026Results = {
+  totalMedals: 3,
+  gold: 1,
+  silver: 0,
+  bronze: 2,
+  achievements: [
+    { athlete: "Avril Aren", event: "4 x 200m Relay", rank: "Gold", record: "Division Champion" },
+    { athlete: "Avril Aren", event: "200M Sprints", rank: "Bronze", record: "Podium Finish" },
+    { athlete: "Avril Aren", event: "4 x 100m Relay", rank: "Bronze", record: "Podium Finish" },
+    { athlete: "Kathlyn Elva", event: "4 x 100m Relay", rank: "Bronze", record: "Podium Finish" },
+    { athlete: "Daniel Mickael", event: "Lontar Peluru", rank: "No. 4", record: "4th Place" },
+  ]
+};
+
 const merentasDesaResults = {
   overall: {
     lelaki: "No. 10",
@@ -287,6 +301,7 @@ export default function App() {
             <div className="hidden lg:flex gap-6 text-sm font-medium text-zinc-600">
               <a href="#mssr-2026" className="hover:text-primary transition-colors font-bold text-accent">MSSR 2026</a>
               <a href="#mssd-2026" className="hover:text-primary transition-colors font-bold text-orange-500">MSSD 2026</a>
+              <a href="#mssb-2026" className="hover:text-primary transition-colors font-bold text-emerald-500">MSSB 2026</a>
               <a href="#track-field" className="hover:text-primary transition-colors">Track & Field</a>
               <a href="#merentas-desa" className="hover:text-primary transition-colors">Merentas Desa</a>
               <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
@@ -316,6 +331,7 @@ export default function App() {
                 {[
                   { name: "MSSR 2026", href: "#mssr-2026", color: "text-accent" },
                   { name: "MSSD 2026", href: "#mssd-2026", color: "text-orange-500" },
+                  { name: "MSSB 2026", href: "#mssb-2026", color: "text-emerald-500" },
                   { name: "Track & Field", href: "#track-field" },
                   { name: "Merentas Desa", href: "#merentas-desa" },
                   { name: "Gallery", href: "#gallery" },
@@ -1059,6 +1075,86 @@ export default function App() {
                         <div className="text-right">
                           <div className="text-md font-bold text-white">{ach.rank}</div>
                           <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Medal</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* MSSB 2026 Section */}
+        <section id="mssb-2026" className="relative my-24 overflow-hidden rounded-[4rem] bg-slate-900 text-white">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full -mr-48 -mt-48 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full -ml-48 -mb-48 blur-3xl" />
+          
+          <div className="p-8 sm:p-16 relative z-10">
+            <div className="flex flex-col lg:flex-row gap-16 items-center">
+              <div className="flex-1 space-y-8">
+                <div>
+                  <div className="inline-flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-widest text-sm mb-4">
+                    <Trophy className="w-4 h-4" />
+                    Division Level Competition
+                  </div>
+                  <h2 className="font-display text-4xl sm:text-6xl font-black leading-tight">
+                    MSSB BAHAGIAN <br />
+                    MIRI 2026.
+                  </h2>
+                </div>
+                
+                <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
+                  Representing Baram at the Division Level competition. Our finest athletes pushed their limits against top competitors across the division.
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10">
+                    <div className="text-3xl font-display font-black text-emerald-400">{mssb2026Results.gold}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Gold</div>
+                  </div>
+                  <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10">
+                    <div className="text-3xl font-display font-black text-zinc-300">{mssb2026Results.silver}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Silver</div>
+                  </div>
+                  <div className="bg-white/5 backdrop-blur-md p-6 rounded-3xl border border-white/10">
+                    <div className="text-3xl font-display font-black text-amber-600">{mssb2026Results.bronze}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Bronze</div>
+                  </div>
+                  <div className="bg-emerald-500 p-6 rounded-3xl shadow-lg shadow-emerald-500/20">
+                    <div className="text-3xl font-display font-black text-slate-950">{mssb2026Results.totalMedals}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-950/60">Total</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex-1 w-full">
+                <div className="bg-white/5 backdrop-blur-xl rounded-4xl p-8 border border-white/10 shadow-2xl">
+                  <h3 className="font-display text-2xl font-bold mb-8 flex items-center gap-3">
+                    <Award className="w-8 h-8 text-emerald-400" />
+                    MSSB Medalists Spotlight
+                  </h3>
+                  <div className="space-y-6">
+                    {mssb2026Results.achievements.map((ach, i) => (
+                      <div key={i} className="flex items-center justify-between p-5 rounded-3xl bg-white/5 hover:bg-white/10 transition-all group">
+                        <div className="flex items-center gap-5">
+                          <div className={cn(
+                            "w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg",
+                            ach.rank === "Gold" ? "bg-emerald-500 text-slate-950" : 
+                            ach.rank === "Silver" ? "bg-zinc-300 text-slate-950" : 
+                            ach.rank === "Bronze" ? "bg-amber-800 text-white" :
+                            "bg-slate-700 text-zinc-300 text-sm"
+                          )}>
+                            {ach.rank === "Gold" ? "G" : ach.rank === "Silver" ? "S" : ach.rank === "Bronze" ? "B" : "4"}
+                          </div>
+                          <div>
+                            <div className="font-bold text-lg group-hover:text-emerald-400 transition-colors">{ach.athlete}</div>
+                            <div className="text-sm text-zinc-400 font-medium">{ach.event}</div>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-md font-bold text-white">{ach.rank}</div>
+                          <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">{ach.record}</div>
                         </div>
                       </div>
                     ))}
